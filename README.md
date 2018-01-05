@@ -25,3 +25,24 @@ sudo tar xvf spark-2.2.0-bin-hadoop2.7.tgz
 ######################################################
 
 https://github.com/Zhuinden/spring-spark-example
+
+######################################################
+
+docker build -t custom/spark .
+
+######################################################
+
+https://github.com/gettyimages/docker-spark
+
+######################################################
+
+https://radanalytics.io/assets/my-first-radanalytics-app/sparkpi-java-spring.html
+
+
+
+
+
+
+
+
+
