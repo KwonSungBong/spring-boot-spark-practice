@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.service;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -12,11 +12,11 @@ import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * Created by ksb on 2017. 12. 27..
+ * Created by ksb on 2018. 2. 5..
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SparkTests {
+public class SparkServiceTests {
 
     @Autowired
     private Environment env;
