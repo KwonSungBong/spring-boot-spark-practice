@@ -1,4 +1,4 @@
-package com.example.demo
+package template.spark
 
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.{SparkConf, SparkContext}

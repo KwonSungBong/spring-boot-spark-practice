@@ -2,3 +2,4 @@ rootProject.name = 'spring-boot-spark-practice'
 
 include 'simple-service'
 include 'spark-sample'
+include 'spark-gradle-template'
