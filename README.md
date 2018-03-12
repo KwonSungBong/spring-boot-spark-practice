@@ -38,9 +38,13 @@ https://github.com/gettyimages/docker-spark
 
 https://radanalytics.io/assets/my-first-radanalytics-app/sparkpi-java-spring.html
 
+######################################################
 
+https://spark.apache.org/docs/latest/rdd-programming-guide.html
 
+#########################################################################
 
+https://github.com/faizanahemad/spark-gradle-template.git
 
 
 
