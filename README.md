@@ -46,6 +46,11 @@ https://spark.apache.org/docs/latest/rdd-programming-guide.html
 
 https://github.com/faizanahemad/spark-gradle-template.git
 
+./spark-submit --class com.skb.nads.SampleSpark /home/whilemouse/git/spark/spark-job/sample-spark-1.0.0.jar
+
+./spark-submit --class com.example.demo.Application /home/whilemouse/git/spark/spark-job/spark-sample-0.0.1-SNAPSHOT.jar
+
+cp /home/whilemouse/git/spring-boot-spark-practice/spark-sample/build/libs/spark-sample-0.0.1-SNAPSHOT.jar ./
 
 
 
