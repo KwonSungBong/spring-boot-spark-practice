@@ -23,7 +23,7 @@ public class SparkServiceTests {
 
     private String appName = "test";
 
-    private String sparkHome = "/Users/ksb/Documents/spark/spark-2.2.0-bin-hadoop2.7";
+    private String sparkHome = "/home/whilemouse/git/spark/spark-2.2.0-bin-hadoop2.7";
 
     private String masterUri = "local";
 
