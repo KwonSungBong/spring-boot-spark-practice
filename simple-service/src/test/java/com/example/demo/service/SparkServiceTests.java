@@ -52,4 +52,28 @@ public class SparkServiceTests {
         sparkSession.stop();
     }
 
+    @Test
+    public void TEST3() {
+        Dataset<Row> df = sparkSession.read().json("../spark/resources/people.json");
+
+        df.show();
+
+        df.write().parquet("../spark/storage/parquet");
+
+        System.out.println();
+
+        sparkSession.stop();
+    }
+
+    @Test
+    public void TEST4() {
+        Dataset<Row> df = sparkSession.read().parquet("../spark/storage/parquet/part-00000-f573523a-a4c6-4757-8856-44b9951d08ba-c000.snappy.parquet");
+
+        df.show();
+
+        System.out.println();
+
+        sparkSession.stop();
+    }
+
 }
