@@ -1,0 +1,47 @@
+buildscript {
+}
+
+apply plugin: 'java'
+apply plugin: 'scala'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'org.scala-lang:scala-library:2.11.7'
+	compile 'org.scala-lang:scala-compiler:2.11.7'
+	testCompile 'org.scalatest:scalatest_2.11:2.2.5'
+
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile(group: 'org.apache.spark', name: 'spark-core_2.11', version: '2.2.0') {
+		exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+		exclude group: "org.slf4j", module: "log4j-over-slf4j"
+		exclude group: "org.slf4j", module: "jcl-over-slf4j"
+		exclude group: "org.slf4j", module: "jul-to-slf4j"
+		exclude group: "org.slf4j", module: "slf4j-api"
+		exclude group: "org.slf4j", module: "slf4j-log4j12"
+		exclude group: "ch.qos.logback", module: "logback-classic"
+		exclude group: "ch.qos.logback", module: "logback-core"
+	}
+	compile(group: 'org.apache.spark', name: 'spark-sql_2.11', version: '2.2.0') {
+		exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+		exclude group: "org.slf4j", module: "log4j-over-slf4j"
+		exclude group: "org.slf4j", module: "jcl-over-slf4j"
+		exclude group: "org.slf4j", module: "jul-to-slf4j"
+		exclude group: "org.slf4j", module: "slf4j-api"
+		exclude group: "org.slf4j", module: "slf4j-log4j12"
+		exclude group: "ch.qos.logback", module: "logback-classic"
+		exclude group: "ch.qos.logback", module: "logback-core"
+	}
+	compile group: 'org.codehaus.janino', name: 'commons-compiler', version: '2.7.8'
+	compile group: 'commons-io', name: 'commons-io', version: '2.6'
+	compileOnly('org.projectlombok:lombok')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}

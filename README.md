@@ -56,3 +56,4 @@ cp /home/whilemouse/git/spring-boot-spark-practice/spark-sample/build/libs/spark
 
 ./spark-submit --class com.example.demo.Main /Users/ksb/Documents/git/spring-boot-spark-practice/spark-sample/build/libs/spark-sample-0.0.1-all.jar
 ./spark-submit --class template.spark.Main /Users/ksb/Documents/git/spring-boot-spark-practice/spark-gradle-template/build/libs/spark-gradle-template-1.0-SNAPSHOT-all.jar
+
