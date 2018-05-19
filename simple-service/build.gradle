@@ -40,6 +40,7 @@ dependencies {
 		exclude group: "ch.qos.logback", module: "logback-classic"
 		exclude group: "ch.qos.logback", module: "logback-core"
 	}
+	compile group: 'org.codehaus.janino', name: 'commons-compiler', version: '2.7.8'
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

@@ -2,6 +2,9 @@ package com.example.demo.service;
 
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SparkSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +23,33 @@ public class SparkServiceTests {
     @Autowired
     private JavaSparkContext sc;
 
+    @Autowired
+    private SparkSession sparkSession;
+
     @Test
-    public void test() {
+    public void TEST1() {
         JavaRDD<String> inFile = sc.textFile("../spark/csv/simple.csv");
 
         List<String> stringList = inFile.collect();
 
         System.out.println();
+    }
 
+    @Test
+    public void TEST2() {
+        Dataset<Row> df = sparkSession.read().json("../spark/resources/people.json");
+
+        df.show();
+
+//        df.printSchema();sunt().show();
+
+        df.createOrReplaceTempView("people");
+        Dataset<Row> sqlDF = sparkSession.sql("SELECT * FROM people");
+        sqlDF.show();
+
+        System.out.println();
+
+        sparkSession.stop();
     }
 
 }
