@@ -11,11 +11,22 @@ import org.springframework.test.context.junit4.SpringRunner
 @SpringBootTest
 class SparkServiceTests {
 
-    var sparkSession : SparkSession = null
+    var sparkSession : SparkSession = _
 
-    @Autowired(required = false)
-    def setMyServiceB(sparkSession : SparkSession): Unit = {
-      this.sparkSession = sparkSession
+    @Autowired
+    def setSparkSession(sparkSession : SparkSession) = this.sparkSession = sparkSession
+
+    @Test
+    def TEST0() = {
+        val test1 = 1 to 10 mkString("[", ",", "]")
+        val test2 = 1 until 10 mkString("[", ",", "]")
+        val test3 = 1 to 10 by 3 mkString("[", ",", "]")
+        val test4 = 1 until 10 by 3 mkString("[", ",", "]")
+
+        println("test1 : %s", test1)
+        println("test2 : %s", test2)
+        println("test3 : %s", test3)
+        println("test4 : %s", test4)
     }
 
     @Test
