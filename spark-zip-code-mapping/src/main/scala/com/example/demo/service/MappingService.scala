@@ -18,11 +18,20 @@ class MappingService @Autowired()(sparkSession : SparkSession) {
     val newList = readNew()
     val oldList = readOld()
 
+    val newZipCodeMappingMap = newList.groupBy(_._1).map { case (k,v) => (k,v.map(_._2))}
+    val oldZipCodeMappingMap = oldList.groupBy(_._1).map { case (k,v) => (k,v.map(_._2))}
+
+    val zipCodeMappingList = oldZipCodeMappingMap.map(oldZipCodeMapping => {
+      val newZipCodeMapping = newZipCodeMappingMap.contains(oldZipCodeMapping._1)
+      if(newZipCodeMapping) (oldZipCodeMapping._2, newZipCodeMappingMap(oldZipCodeMapping._1))
+      else (oldZipCodeMapping._2, List.empty)
+    })
+
     println("mapping")
   }
 
   def readNew() = {
-    val list = 1 to 14 map(index => {
+    val list = 0 to 14 map(index => {
       sparkSession.sparkContext.textFile(newDirectoryPath+index+txtExt).collect()
     })
 
@@ -31,18 +40,18 @@ class MappingService @Autowired()(sparkSession : SparkSession) {
       if(!lineSplit(5).isEmpty) {
         if(!lineSplit(17).isEmpty) {
           val mappingKey = lineSplit(1)+" "+lineSplit(3)+" "+lineSplit(5)+" "+lineSplit(17)+" "+lineSplit(8)
-          (lineSplit(0), mappingKey, lineSplit(1), lineSplit(3), lineSplit(5), lineSplit(17), lineSplit(8))
+          (mappingKey, lineSplit(0), lineSplit(1), lineSplit(3), lineSplit(5), lineSplit(17), lineSplit(8))
         } else {
           val mappingKey = lineSplit(1)+" "+lineSplit(3)+" "+lineSplit(5)+" "+lineSplit(18)+" "+lineSplit(8)
-          (lineSplit(0), mappingKey, lineSplit(1), lineSplit(3), lineSplit(5), lineSplit(18), lineSplit(8))
+          (mappingKey, lineSplit(0), lineSplit(1), lineSplit(3), lineSplit(5), lineSplit(18), lineSplit(8))
         }
       } else {
         if(!lineSplit(17).isEmpty) {
-          val mappingKey = lineSplit(1)+" "+lineSplit(3)+" "+lineSplit(17)+" "+lineSplit(8)
-          (lineSplit(0), mappingKey, lineSplit(1), lineSplit(3), lineSplit(17), null, lineSplit(8))
+          val mappingKey = lineSplit(1)+" "+lineSplit(3)+" "+lineSplit(5)+" "+lineSplit(17)+" "+lineSplit(8)
+          (mappingKey, lineSplit(0), lineSplit(1), lineSplit(3), lineSplit(17), null, lineSplit(8))
         } else {
-          val mappingKey = lineSplit(1)+" "+lineSplit(3)+" "+lineSplit(18)+" "+lineSplit(8)
-          (lineSplit(0), mappingKey, lineSplit(1), lineSplit(3), lineSplit(18), null, lineSplit(8))
+          val mappingKey = lineSplit(1)+" "+lineSplit(3)+" "+lineSplit(5)+" "+lineSplit(18)+" "+lineSplit(8)
+          (mappingKey, lineSplit(0), lineSplit(1), lineSplit(3), lineSplit(18), null, lineSplit(8))
         }
       }
     }).distinct)
@@ -51,7 +60,7 @@ class MappingService @Autowired()(sparkSession : SparkSession) {
   }
 
   def readOld() = {
-    val list = 1 to 16 map(index => {
+    val list = 0 to 16 map(index => {
       sparkSession.sparkContext.textFile(oldDirectoryPath+index+txtExt).collect()
     })
 
@@ -60,18 +69,18 @@ class MappingService @Autowired()(sparkSession : SparkSession) {
       if(!lineSplit(5).isEmpty) {
         if(!lineSplit(17).isEmpty) {
           val mappingKey = lineSplit(2)+" "+lineSplit(4)+" "+lineSplit(6)+" "+lineSplit(18)+" "+lineSplit(9)
-          (lineSplit(0), mappingKey, lineSplit(2), lineSplit(4), lineSplit(6), lineSplit(18), lineSplit(9))
+          (mappingKey, lineSplit(0), lineSplit(2), lineSplit(4), lineSplit(6), lineSplit(18), lineSplit(9))
         } else {
           val mappingKey = lineSplit(2)+" "+lineSplit(4)+" "+lineSplit(6)+" "+lineSplit(19)+" "+lineSplit(9)
-          (lineSplit(0), mappingKey, lineSplit(2), lineSplit(4), lineSplit(6), lineSplit(19), lineSplit(9))
+          (mappingKey, lineSplit(0), lineSplit(2), lineSplit(4), lineSplit(6), lineSplit(19), lineSplit(9))
         }
       } else {
         if(!lineSplit(17).isEmpty) {
-          val mappingKey = lineSplit(2)+" "+lineSplit(4)+" "+lineSplit(18)+" "+lineSplit(9)
-          (lineSplit(0), mappingKey, lineSplit(2), lineSplit(4), lineSplit(18), null, lineSplit(9))
+          val mappingKey = lineSplit(2)+" "+lineSplit(4)+" "+lineSplit(6)+" "+lineSplit(18)+" "+lineSplit(9)
+          (mappingKey, lineSplit(0), lineSplit(2), lineSplit(4), lineSplit(18), null, lineSplit(9))
         } else {
-          val mappingKey = lineSplit(2)+" "+lineSplit(4)+" "+lineSplit(19)+" "+lineSplit(9)
-          (lineSplit(0), mappingKey, lineSplit(2), lineSplit(4), lineSplit(19), null, lineSplit(9))
+          val mappingKey = lineSplit(2)+" "+lineSplit(4)+" "+lineSplit(6)+" "+lineSplit(19)+" "+lineSplit(9)
+          (mappingKey, lineSplit(0), lineSplit(2), lineSplit(4), lineSplit(19), null, lineSplit(9))
         }
       }
     }).distinct)
