@@ -19,3 +19,12 @@ iconv -f CP949 -t UTF-8 input.txt > output.txt
 
 ####################################################
 
+https://people.apache.org/~pwendell/spark-releases/spark-2.2.0-rc1-docs/sql-programming-guide.html#parquet-files
+
+
+
+1. 뉴 올드 각각 가져오기
+2. 몇개로 맵핑해서 맵핑 테이블 생성
+
+
+
