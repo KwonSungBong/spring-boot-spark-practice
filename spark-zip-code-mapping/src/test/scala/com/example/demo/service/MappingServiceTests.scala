@@ -26,14 +26,14 @@ class MappingServiceTests {
     def TEST1(): Unit = {
 //        mappingService.readNew
 //        mappingService.writeParquetNew
-        mappingService.readParquetNew
+//        mappingService.readParquetNew
     }
 
     @Test
     def TEST2(): Unit ={
 //        mappingService.readOld
 //        mappingService.writeParquetOld
-        mappingService.readParquetOld()
+//        mappingService.readParquetOld()
     }
 
 }

@@ -20,3 +20,10 @@ iconv -f CP949 -t UTF-8 input.txt > output.txt
 ####################################################
 
 https://people.apache.org/~pwendell/spark-releases/spark-2.2.0-rc1-docs/sql-programming-guide.html#parquet-files
+
+
+
+
+
+
+
